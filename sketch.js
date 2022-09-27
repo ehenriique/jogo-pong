@@ -40,7 +40,7 @@ function draw() {
   colisaoRaquete();
   mostraRaquete(xRaqueteOponente,yRaqueteOponente);
   movimentoRaqueteOponente();
-  colisaoRaqueteOponenteBibliotece();
+  
   
 }
 
