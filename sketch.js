@@ -26,6 +26,12 @@ let yRaqueteOponente= 150;
 let velocidadeYOponente;
 
 
+//variaveis do placar
+
+let meusPontos=0;
+let pontosDoOponente=0;
+
+
 function setup() {
   createCanvas(600, 400);
 }
@@ -37,10 +43,12 @@ function draw() {
   colisaoBorda();
   mostraRaquete(xRaquete, yRaquete);
   movimentoMinhaRaquete();
-  colisaoRaquete();
+  verificaColisaoRaquetes(xRaquete, yRaquete);
   mostraRaquete(xRaqueteOponente,yRaqueteOponente);
   movimentoRaqueteOponente();
-  
+  verificaColisaoRaquetes(xRaqueteOponente,yRaqueteOponente);
+  incluiPlacar();
+  marcaPonto();
   
 }
 
@@ -86,12 +94,12 @@ function movimentoMinhaRaquete(){
 
 function colisaoRaquete(){
   if (xBolinha - raio < xRaquete + comprimeitoRaquete && yBolinha - raio < yRaquete + alturaRaquete && yBolinha + raio > yRaquete){
-    velocidadeXBolinha *= -1;
+   velocidadeXBolinha *= -1;
   }
 }
 
 
-function colisaoRaqueteBiblioteca(x,y){
+function verificaColisaoRaquetes(x,y){
  colidiu = collideRectCircle(x, y, comprimeitoRaquete,alturaRaquete, xBolinha, yBolinha, raio);
  if (colidiu){
   velocidadeXBolinha *= -1;
@@ -104,3 +112,19 @@ velocidadeYOponente = yBolinha - yRaqueteOponente - comprimeitoRaquete /2 - 30;
 yRaqueteOponente += velocidadeYOponente
 }
 
+
+function incluiPlacar(){
+   text(meusPontos, 278 , 26);
+   text(pontosDoOponente,321,26);
+}
+
+
+function marcaPonto(){
+  if (xBolinha > 590){
+    meusPontos += 1;
+  }
+
+  if (xBolinha < 10){
+    pontosDoOponente += 1;
+  }
+}
