@@ -46,7 +46,7 @@ raquetada = loadSound("raquetada.mp3");
 
 function setup() {
   createCanvas(600, 400);
-  
+   
 }
 
 function draw() {
