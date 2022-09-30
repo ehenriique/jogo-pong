@@ -31,9 +31,22 @@ let velocidadeYOponente;
 let meusPontos=0;
 let pontosDoOponente=0;
 
+//sons do jogo
+
+let raquetada;
+let ponto;
+let trilha;
+
+
+function preLoad(){
+  trilha = loadSound("trilha.mp3");
+ ponto = loadSound("ponto.mp3");
+raquetada = loadSound("raquetada.mp3");
+}
 
 function setup() {
   createCanvas(600, 400);
+  
 }
 
 function draw() {
@@ -54,6 +67,7 @@ function draw() {
 
 
 function mostraBolinha(){
+  fill(255);
    circle (xBolinha,yBolinha,diametro);
 }
 
@@ -77,8 +91,9 @@ function colisaoBorda(){
 
 function mostraRaquete(x,y){
   let c = color(0, 4, 0);
-  rect(x,y,comprimeitoRaquete,alturaRaquete);
   fill(c);
+  rect(x,y,comprimeitoRaquete,alturaRaquete);
+ 
 
 }
 
@@ -108,14 +123,22 @@ function verificaColisaoRaquetes(x,y){
 }
 
 function movimentoRaqueteOponente(){
-velocidadeYOponente = yBolinha - yRaqueteOponente - comprimeitoRaquete /2 - 30;
-yRaqueteOponente += velocidadeYOponente
+  if (keyIsDown(87)){
+    yRaqueteOponente -= 10;
+   }
+
+   if (keyIsDown(83)){
+    yRaqueteOponente += 10;
+   }
 }
 
 
 function incluiPlacar(){
-   text(meusPontos, 278 , 26);
-   text(pontosDoOponente,321,26);
+  textSize(20);
+  textStyle(color(255));
+  textAlign(CENTER);
+   text(meusPontos, 170, 26);
+   text(pontosDoOponente, 470,26);
 }
 
 
@@ -128,3 +151,4 @@ function marcaPonto(){
     pontosDoOponente += 1;
   }
 }
+
